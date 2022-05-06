@@ -1,7 +1,7 @@
 import './App.css';
 function App() {
-  return(
+  return (
     <h1>Welcom to F8</h1>
   )
 }
-export default App
+export default App;
