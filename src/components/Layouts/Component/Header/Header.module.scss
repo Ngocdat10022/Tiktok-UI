@@ -19,8 +19,11 @@
 .logo {
 
 }
-.search {
+.search ,.search-result{
     width: 361px;
+}
+.search {
+
     height: var(--search-height);
     background: rgba(22, 24, 35, 0.06);
     border-radius: var(--searach-border-raidus);
@@ -54,11 +57,7 @@
         border: 1.5px solid  rgba(22, 24, 35, 0.06);
     }
 }
-
-.loading {
-
-}
-.clear, .loading {
+r, .loading {
     position: absolute;
     right:calc(var(--search-btn-width) + 16px);
     top:50%;
