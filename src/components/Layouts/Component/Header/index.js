@@ -4,9 +4,10 @@ import styles from './Header.module.scss'
 import images from '../../../../assets/Images';
 import { Wrapper as PoperWrapper } from '../../../poper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import AcountItem from '../../../accounttem';
+import Button from '../../../Button';
 const cx = classNames.bind(styles)
 function Header() {
     const [Searchresults, setSearchresults] = useState([])
@@ -46,7 +47,10 @@ function Header() {
                     </button>
                 </div>
             </Tippy>
-            <div className={cx('action')}></div>
+            <div className={cx('action')}>
+                <Button text>Upload</Button>
+                <Button primary rightIcon={ <FontAwesomeIcon icon={faArrowRightToBracket} />} >Log in</Button>
+            </div>
         </div>
     </header>
 }

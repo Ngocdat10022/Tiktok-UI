@@ -15,10 +15,6 @@
     align-items: center;
     justify-content: space-between;
 }
-
-.logo {
-
-}
 .search ,.search-result{
     width: 361px;
 }
@@ -57,7 +53,7 @@
         border: 1.5px solid  rgba(22, 24, 35, 0.06);
     }
 }
-r, .loading {
+.clear, .loading {
     position: absolute;
     right:calc(var(--search-btn-width) + 16px);
     top:50%;
