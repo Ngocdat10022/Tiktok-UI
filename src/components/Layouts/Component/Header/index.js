@@ -4,18 +4,34 @@ import styles from './Header.module.scss'
 import images from '../../../../assets/Images';
 import { Wrapper as PoperWrapper } from '../../../poper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faArrowRightToBracket, faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import AcountItem from '../../../accounttem';
 import Button from '../../../Button';
+import Menu from '../../../poper/Menu';
 const cx = classNames.bind(styles)
 function Header() {
-    const [Searchresults, setSearchresults] = useState([])
+    const [Searchresults, setSearchresults] = useState([1, 2])
     useEffect(() => {
         setTimeout(() => {
             setSearchresults([]);
         }, 0)
     }, [])
+    const MENU_ITEMS = [
+        {
+            icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            title: 'English',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+            title: 'Feedback and help',
+            to: '/feedback',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faKeyboard} />,
+            title: 'Keyboard shortcuts',
+        },
+    ];
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
             <div className={cx('logo')}>
@@ -49,7 +65,10 @@ function Header() {
             </Tippy>
             <div className={cx('action')}>
                 <Button text>Upload</Button>
-                <Button primary rightIcon={ <FontAwesomeIcon icon={faArrowRightToBracket} />} >Log in</Button>
+                <Button primary rightIcon={<FontAwesomeIcon icon={faArrowRightToBracket} />} >Log in</Button>
+                <Menu items={MENU_ITEMS}>
+                    <button className={cx('more-btn')}><FontAwesomeIcon icon={faEllipsisVertical} /></button>
+                </Menu>
             </div>
         </div>
     </header>
