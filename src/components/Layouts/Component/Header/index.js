@@ -17,10 +17,29 @@ function Header() {
             setSearchresults([]);
         }, 0)
     }, [])
+
+    const hanldMenuChange = (menuItem) => {
+        console.log(menuItem);
+    }
     const MENU_ITEMS = [
         {
             icon: <FontAwesomeIcon icon={faEarthAsia} />,
             title: 'English',
+            children: {
+                title: 'Language',
+                data: [
+                    {
+                        type: 'language',
+                        code: 'en',
+                        title: 'Engligh'
+                    },
+                    {
+                        type: 'language',
+                        code: 'vi',
+                        title: 'TiengViet'
+                    }
+                ]
+            }
         },
         {
             icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -66,12 +85,11 @@ function Header() {
             <div className={cx('action')}>
                 <Button text>Upload</Button>
                 <Button primary rightIcon={<FontAwesomeIcon icon={faArrowRightToBracket} />} >Log in</Button>
-                <Menu items={MENU_ITEMS}>
+                <Menu items={MENU_ITEMS} onChange={hanldMenuChange}>
                     <button className={cx('more-btn')}><FontAwesomeIcon icon={faEllipsisVertical} /></button>
                 </Menu>
             </div>
         </div>
     </header>
 }
-
 export default Header;
