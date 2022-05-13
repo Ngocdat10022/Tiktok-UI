@@ -13,8 +13,6 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
-    faCloudArrowUp,
-    faMessage,
     faUser,
     faCoins,
     faGear,
@@ -26,6 +24,8 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import AcountItem from '../../../accounttem';
 import Button from '../../../Button';
 import Menu from '../../../poper/Menu';
+import { MessageIcon, UploadIcon } from '../../../Icon';
+import Image from '../../../Images'
 const cx = classNames.bind(styles)
 function Header() {
     const [Searchresults, setSearchresults] = useState([])
@@ -129,10 +129,10 @@ function Header() {
                     <>
                         <Tippy content='Up loadvideo' placement='bottom'>
                             <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faCloudArrowUp} />
+                                <UploadIcon />
                             </button>
                         </Tippy>
-                        <button className={cx('action-btn')}><FontAwesomeIcon icon={faMessage} /></button>
+                        <button className={cx('action-btn')}><MessageIcon /> </button>
                     </> :
                     <>
                         <Button text>Upload</Button>
@@ -141,7 +141,12 @@ function Header() {
                 }
                 <Menu items={curent ? UserMenu : MENU_ITEMS} onChange={hanldMenuChange}>
                     {curent ?
-                        (<img src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/e86867bdcd0d0fa4649f4731b60677ad~c5_100x100.jpeg?x-expires=1652583600&x-signature=0%2FY46G0V3BSIYpMdatCBdXFUkxU%3D' className={cx('user-avatar')} alt='phuong hoa' />)
+                        (<Image
+                            src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/e86867bdcd0d0fa4649f4731b60677ad~c5_100x100.jpeg?x-expires=1652583600&x-signature=0%2FY46G0V3BSIYpMdatCBdXFUkxU%3D'
+                            className={cx('user-avatar')}
+                            alt='phuong hoa'
+                        // fallback="https://static.fullstack.edu.vn/static/media/f8-icon.7ad2b161d5e80c87e516.png"
+                        />)
                         :
                         (<button className={cx('more-btn')}><FontAwesomeIcon icon={faEllipsisVertical} /></button>)}
                 </Menu>
