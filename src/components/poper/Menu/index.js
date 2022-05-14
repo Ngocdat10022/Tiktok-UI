@@ -19,12 +19,12 @@ function Menu({ children, items, onChange }) {
                 <div className={cx('content')} aria-expanded="true" tabIndex="-1" {...attrs}>
                     <PoperWrapper className={cx('menu-popper')}>
                         {History.length > 1 ? <Header title='language' onBack={() => {
-                            console.log(History.slice(0, History.length - 1));
+                            // console.log(History.slice(0, History.length - 1));
                             setHistory(History.slice(0, History.length - 1))
                         }} /> : ''}
                         {current.data.map((item, index) => {
                             const isParent = !!item.children
-                            console.log(isParent);
+                            // console.log(isParent);
                             return <Menuitems to={item.to} key={index} data={item} onClick={() => {
                                 if (isParent) {
                                     setHistory(prev => [...prev, item.children])
