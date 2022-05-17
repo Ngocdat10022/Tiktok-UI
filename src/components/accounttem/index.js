@@ -4,15 +4,15 @@ import classNames from "classnames/bind";
 import styles from './accountltem.module.scss'
 import Images from "../Images";
 const cx = classNames.bind(styles)
-function AcountItem() {
+function AcountItem({ data }) {
     return <div className={cx('wrapper')}>
-        <Images className={cx('avatar')} src="https://png.pngtree.com/png-vector/20190130/ourlar…ee-cute-girl-avatar-material-png-image_678035.jpg" alt="avatar" />
+        <Images className={cx('avatar')} src={data.avatar} alt={data.full_name} />
         <div className={cx('info')}>
             <p className={cx('name')}>
-                <span>ngọc đạt</span>
-                <FontAwesomeIcon icon={faCheckCircle} />
+                <span>{data.full_name}</span>
+                {data.tick && <FontAwesomeIcon icon={faCheckCircle} />}
             </p>
-            <span className={cx('username')}></span>
+            <span className={cx('username')}>{data.nickname}</span>
         </div>
     </div>
 }

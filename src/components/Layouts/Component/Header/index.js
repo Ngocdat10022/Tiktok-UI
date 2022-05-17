@@ -56,8 +56,6 @@ function Header() {
             title: 'Keyboard shortcuts',
         },
     ];
-
-
     const UserMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,

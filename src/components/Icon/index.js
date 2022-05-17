@@ -15,7 +15,7 @@ export const UploadIcon = ({ width = "3.2rem", height = "3.2rem", className }) =
 
 export const MessageIcon = ({ width = "3rem", height = "3rem", className }) => (
     <svg
-        class={className}
+        className={className}
         width={width}
         height={height}
         viewBox="0 0 48 48"
@@ -52,7 +52,7 @@ export const SearchIcon = ({ width = "2rem", height = "2rem", className }) => (
         viewBox="0 0 48 48"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
-        class="__web-inspector-hide-shortcut__">
+        className="__web-inspector-hide-shortcut__">
         <path
             fillRule="evenodd"
             clipRule="evenodd"

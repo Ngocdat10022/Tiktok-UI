@@ -4,22 +4,36 @@ import AcountItem from '../../../accounttem';
 import { Wrapper as PoperWrapper } from '../../../poper'
 import styles from './Search.module.scss'
 import {
-    faCircleXmark
+    faCircleXmark,
+    faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { SearchIcon } from '../../../Icon';
 const cx = classNames.bind(styles)
 function Search() {
+    const [SearchValue, setSearchValue] = useState('');
     const [Searchresults, setSearchresults] = useState([])
-    const [SearchValue, setSearchValue] = useState([]);
     const [ShowResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
     const InputRef = useRef()
     useEffect(() => {
-        setTimeout(() => {
-            setSearchresults([1, 2, 3]);
-        }, 0)
-    }, [])
+        // exit function 
+        if (!SearchValue.trim()) {
+            setSearchresults([])
+            return;
+        }
+        setLoading(true)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(SearchValue)}&type=less`)
+            .then(res => res.json())
+            .then((res) => {
+                setSearchresults(res.data);
+                setLoading(false)
+            })
+            .catch(() => {
+                setLoading(false)
+            })
+    }, [SearchValue])
     return (
         <HeadlessTippy
             interactive
@@ -30,15 +44,13 @@ function Search() {
                         <h4 className={cx('search-title')}>
                             Acount
                         </h4>
-                        <AcountItem />
-                        <AcountItem />
-                        <AcountItem />
-                        <AcountItem />
+                        {Searchresults.map((result) => {
+                            return <AcountItem key={result.id} data={result} />
+                        })}
                     </PoperWrapper>
                 </div>
             )}
             onClickOutside={() => {
-
                 setShowResult(false)
             }}
         >
@@ -48,17 +60,23 @@ function Search() {
                     value={SearchValue}
                     placeholder='search accounts and videos '
                     spellCheck={false}
-                    onChange={e => setSearchValue(e.target.value)}
+                    onChange={e => {
+                        setSearchValue(e.target.value);
+                        // setSearchresults(SearchValue);
+                    }}
                     onFocus={() => setShowResult(true)}
                 />
-                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
-                {!!SearchValue && (
+                {!!SearchValue && !loading && (
                     <button onClick={() => {
                         setSearchValue('')
                         setSearchresults([])
                         InputRef.current.focus();
-                    }} className={cx('clear')}><FontAwesomeIcon icon={faCircleXmark} /> </button>
+                    }}
+                        className={cx('clear')}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
                 )}
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
                 <button className={cx('search-btn')}>
                     <SearchIcon />
                 </button>
