@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { SearchIcon } from '../../../Icon';
 import { UseDebounce } from '../../../../hook';
+import * as request from '../../../../utils/request'
 const cx = classNames.bind(styles)
 function Search() {
     const [SearchValue, setSearchValue] = useState('');
@@ -26,15 +27,21 @@ function Search() {
             return;
         }
         setLoading(true)
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then(res => res.json())
-            .then((res) => {
+        const fetchApi = async () => {
+            try {
+                const res = await request.get(`users/search`, {
+                    params: {
+                        q: debounced,
+                        type: "less"
+                    }
+                })
                 setSearchresults(res.data);
                 setLoading(false)
-            })
-            .catch(() => {
+            } catch (error) {
                 setLoading(false)
-            })
+            }
+        }
+        fetchApi()
     }, [debounced])
     return (
         <HeadlessTippy
