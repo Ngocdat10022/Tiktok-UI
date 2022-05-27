@@ -9,9 +9,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
+import * as  searchServices from '../../../../apiServices/searchServices';
 import { SearchIcon } from '../../../Icon';
 import { UseDebounce } from '../../../../hook';
-import * as request from '../../../../utils/request'
 const cx = classNames.bind(styles)
 function Search() {
     const [SearchValue, setSearchValue] = useState('');
@@ -27,22 +27,25 @@ function Search() {
             return;
         }
         setLoading(true)
+
         const fetchApi = async () => {
-            try {
-                const res = await request.get(`users/search`, {
-                    params: {
-                        q: debounced,
-                        type: "less"
-                    }
-                })
-                setSearchresults(res.data);
-                setLoading(false)
-            } catch (error) {
-                setLoading(false)
-            }
+            setLoading(true);
+            const result = await searchServices.search(debounced)
+            setSearchresults(result)
+            setLoading(false);
         }
-        fetchApi()
+        fetchApi();
     }, [debounced])
+    const handleChange = (e) => {
+        const searchValue = e.target.value
+        if (searchValue.startsWith(' ')) {
+            return
+        }
+        setSearchValue(searchValue)
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
     return (
         <HeadlessTippy
             interactive
@@ -69,10 +72,7 @@ function Search() {
                     value={SearchValue}
                     placeholder='search accounts and videos '
                     spellCheck={false}
-                    onChange={e => {
-                        setSearchValue(e.target.value);
-                        // setSearchresults(SearchValue);
-                    }}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
                 />
                 {!!SearchValue && !loading && (
@@ -86,7 +86,7 @@ function Search() {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={handleSubmit}>
                     <SearchIcon />
                 </button>
             </div>

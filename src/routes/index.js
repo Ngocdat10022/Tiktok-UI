@@ -4,26 +4,27 @@ import Following from '../pages/Following';
 import Profile from '../pages/Profile'
 import Upload from '../pages/upload'
 import Search from '../pages/Search';
+import routes from '../config';
 const publicRouter = [
     {
-        path: '/',
+        path: routes.home,
         component: Home
     },
     {
-        path: '/following',
+        path: routes.following,
         component: Following
     },
     {
-        path: '/profile',
+        path: routes.profile,
         component: Profile
     },
     {
-        path: '/upload',
+        path: routes.upload,
         component: Upload,
         Layout: HeaderOnly
     },
     {
-        path: '/search',
+        path: routes.search,
         component: Search,
         Layout: null
     },

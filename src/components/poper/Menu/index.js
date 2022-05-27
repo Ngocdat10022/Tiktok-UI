@@ -6,12 +6,13 @@ import Tippy from "@tippyjs/react/headless";
 import Menuitems from "./Menuitem";
 import Header from "./Header";
 const cx = classNames.bind(styles)
-function Menu({ children, items, onChange }) {
+function Menu({ children, items, hideOnClick = false, onChange }) {
     const [History, setHistory] = useState([{ data: items }])
     const current = History[History.length - 1]
     return (
         <Tippy
             interactive
+            hideOnClick={hideOnClick}
             delay={[0, 1000]}
             offset={[10, 10]}
             placement='bottom-end'

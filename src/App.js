@@ -14,7 +14,7 @@ function App() {
           } else if (route.Layout === null) {
             Layout = Fragment
           }
-          return <Route key={index} path={route.path} element={<Layout><Page /></Layout>}/>
+          return <Route key={index} path={route.path} element={<Layout><Page /></Layout>} />
         })}
       </Routes>
     </Router>
