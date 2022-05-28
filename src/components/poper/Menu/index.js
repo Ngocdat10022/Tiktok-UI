@@ -23,22 +23,24 @@ function Menu({ children, items, hideOnClick = false, onChange }) {
                             // console.log(History.slice(0, History.length - 1));
                             setHistory(History.slice(0, History.length - 1))
                         }} /> : ''}
-                        {current.data.map((item, index) => {
-                            const isParent = !!item.children
-                            // console.log(isParent);
-                            return <Menuitems to={item.to} key={index} data={item} onClick={() => {
-                                if (isParent) {
-                                    setHistory(prev => [...prev, item.children])
-                                }
-                            }} />
-                        })}
-                    </PoperWrapper>
-                </div>
+                        <div className={cx("menu-body")} >
+                            {current.data.map((item, index) => {
+                                const isParent = !!item.children
+                                // console.log(isParent);
+                                return <Menuitems key={index} to={item.to} data={item} onClick={() => {
+                                    if (isParent) {
+                                        setHistory(prev => [...prev, item.children])
+                                    }
+                                }} />
+                            })}
+                        </div>
+                    </PoperWrapper >
+                </div >
             )}
             onHide={() => { setHistory(prev => prev.slice(0, 1)) }}
         >
             {children}
-        </Tippy>
+        </Tippy >
     );
 }
 

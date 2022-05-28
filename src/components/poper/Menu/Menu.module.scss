@@ -1,8 +1,7 @@
-
-.content{
-    width:224px;
+.content {
+    width: 224px;
     background: var(--white);
-    .menu-item{
+    .menu-item {
         margin: 0;
     }
 }
@@ -26,7 +25,9 @@
     padding-bottom: 8px;
     // animation:hide ease 0.5s ;
 }
-
+.menu-body {
+    overflow-y: scroll;
+}
 // @keyframes hide {
 //     0%{
 //         opacity: 1;
@@ -36,11 +37,11 @@
 //     }
 // }
 
-
 .header {
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 
 .back-btn {
