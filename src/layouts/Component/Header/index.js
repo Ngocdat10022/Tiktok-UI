@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss'
-import images from '../../../../assets/Images';
+import images from '../../../assets/Images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightToBracket,
@@ -15,13 +15,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react';
-import Button from '../../../Button';
-import Menu from '../../../poper/Menu';
-import { InboxIcon, MessageIcon, UploadIcon } from '../../../Icon';
-import Image from '../../../Images'
+import Button from '../../../components/Button';
+import Menu from '../../../components/poper/Menu';
+import { InboxIcon, MessageIcon, UploadIcon } from '../../../components/Icon';
+import Image from '../../../components/Images'
 import Search from '../Search';
 import { Link } from 'react-router-dom';
-import routes from '../../../../config';
+import config from '../../../config';
 const cx = classNames.bind(styles)
 function Header() {
     const curent = true;
@@ -85,7 +85,7 @@ function Header() {
     return <header className={cx('wrapper')}>
         <div className={cx('inner')}>
             <div className={cx('logo')}>
-                <Link to={routes.home} className={cx('logo-link')}>
+                <Link to={config.routes.home} className={cx('logo-link')}>
                     <img src={images.logo} alt='tiktok' />
                 </Link>
             </div>

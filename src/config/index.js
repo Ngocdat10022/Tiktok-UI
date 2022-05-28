@@ -1,10 +1,6 @@
-
-
-const routes = {
-    home: '/',
-    following: "/following",
-    profile: "/@:nickname",
-    upload: "/upload",
-    search: "search"
+import routes from "./routes"
+const config = {
+    routes
 }
-export default routes
+
+export default config
