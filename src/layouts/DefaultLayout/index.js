@@ -1,5 +1,5 @@
 import Header from '../Component/Header';
-import Siderbar from './SiderBar';
+import Siderbar from '../Component/SiderBar';
 import styles from './DefaultLayout.module.scss';
 import classNames from 'classnames/bind';
 

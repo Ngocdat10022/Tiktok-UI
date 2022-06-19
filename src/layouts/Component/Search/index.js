@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
-import AcountItem from '../../../components/accounttem';
 import { Wrapper as PoperWrapper } from '../../../components/poper'
 import styles from './Search.module.scss'
 import {
@@ -12,6 +11,7 @@ import classNames from 'classnames/bind';
 import * as  searchServices from '../../../Services/searchService';
 import { SearchIcon } from '../../../components/Icon';
 import { UseDebounce } from '../../../hook';
+import Searchresult from './Searchresult';
 const cx = classNames.bind(styles)
 function Search() {
     const [SearchValue, setSearchValue] = useState('');
@@ -37,6 +37,7 @@ function Search() {
     }, [debouncedVlaue])
     const handleChange = (e) => {
         const searchValue = e.target.value
+        // no space
         if (searchValue.startsWith(' ')) {
             return
         }
@@ -55,9 +56,7 @@ function Search() {
                         <h4 className={cx('search-title')}>
                             Acount
                         </h4>
-                        {Searchresults.map((result) => {
-                            return <AcountItem key={result.id} data={result} />
-                        })}
+                        <Searchresult Searchresults={Searchresults} />
                     </PoperWrapper>
                 </div>
             )}

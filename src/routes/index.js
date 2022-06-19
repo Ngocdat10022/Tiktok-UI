@@ -4,6 +4,7 @@ import Following from '../pages/Following';
 import Profile from '../pages/Profile'
 import Upload from '../pages/upload'
 import Search from '../pages/Search';
+import Live from '../pages/Live';
 import config from '../config';
 const publicRouter = [
     {
@@ -22,6 +23,10 @@ const publicRouter = [
         path: config.routes.upload,
         component: Upload,
         Layout: HeaderOnly
+    },
+    {
+        path: config.routes.live,
+        component: Live,
     },
     {
         path: config.routes.search,
